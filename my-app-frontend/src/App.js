@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import FruitList from "./FruitList";
-import ShoppingCart from "./ShoppingCart";
+import NewFruitForm from "./NewFruitForm";
 
 function App() {
   const [fruits, setFruits] = useState([]);
@@ -34,19 +34,19 @@ function App() {
   }
 
   const displayedFruits = fruits.filter((fruit) =>
-    fruit.body.toLowerCase().includes(search.toLowerCase())
+    fruit.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <main>
       <header><h1>FruitShop</h1></header>
       <Search search={search} onSearchChange={setSearch} />
+      <NewFruitForm onFruitAdd={handleAddFruit}/>
       <FruitList
         fruits={displayedFruits}
         onFruitDelete={handleDeleteFruit}
         onUpdateFruit={handleUpdateFruit}
       />
-      <ShoppingCart currentUser={testUser} onAddFruit={handleAddFruit} />
     </main>
   );
 }
