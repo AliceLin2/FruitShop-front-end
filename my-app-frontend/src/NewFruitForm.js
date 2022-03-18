@@ -18,13 +18,7 @@ function NewFruitForm({onAddFruit}) {
   }
   function handleSubmit(e){
     e.preventDefault()
-    const newItem = {
-      name,
-      price,
-      stock,
-      health_benefit
-    }
-    onAddFruit(newItem)
+    onAddFruit(formData)
   }
 
   return (
