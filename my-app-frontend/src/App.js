@@ -22,10 +22,10 @@ function App() {
     setFruits(updatedFruits);
   }
 
-  function handleUpdateFruit(updatedFruitObj) {
+  function handleUpdateFruit(updatedFruit) {
     const updatedFruits = fruits.map((fruit) => {
-      if (fruit.id === updatedFruitObj.id) {
-        return updatedFruitObj;
+      if (fruit.id === updatedFruit.id) {
+        return updatedFruit;
       } else {
         return fruit;
       }
@@ -33,18 +33,18 @@ function App() {
     setFruits(updatedFruits);
   }
 
-  const displayedFruits = fruits.filter((fruit) =>
+  const showFruits = fruits.filter((fruit) =>
     fruit.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <main>
-      <header><h1>FruitShop</h1></header>
-      <Search search={search} onSearchChange={setSearch} />
-      <NewFruitForm onFruitAdd={handleAddFruit}/>
+      <header>FruitShop</header>
+      <Search search={search} onSearch={setSearch} />
+      <NewFruitForm onAddFruit={handleAddFruit}/>
       <FruitList
-        fruits={displayedFruits}
-        onFruitDelete={handleDeleteFruit}
+        fruits={showFruits}
+        onDeleteFruit={handleDeleteFruit}
         onUpdateFruit={handleUpdateFruit}
       />
     </main>

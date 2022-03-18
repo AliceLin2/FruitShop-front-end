@@ -1,12 +1,12 @@
 import React from "react";
 
-function Search({handleSearch, search}) {
+function Search({onSearch, search}) {
   return (
     <div>
       <input
         type="text"
         placeholder="Search by fruit name"
-        onChange={handleSearch}
+        onChange={onSearch}
         value={search}
       />
     </div>

@@ -1,24 +1,30 @@
 import React from "react";
 import Fruit from "./Fruit"
-
-function FruitList({fruit, searchTerm, onSelectFruit}) {
-    function allFruit() {
-        if (!!searchTerm) {
-            return fruit.map((f) => {
-                if (f.title.toLowerCase().includes(searchTerm)) {
-                    return <Fruit fruit={f} key={f.id} onSelectFruit={onSelectFruit}/>;
-                } 
-            });
-        }
-        return fruit.map((f) => (
-            <Fruit fruit={f} key={f.id} onSelectFruit={onSelectFruit}/>
-        ));
+const style = {
+    display: "inline-block",
+    width: "500px",
+    padding: "20px",
+    margin: "0 10px 10px",
+    color: "black",
+    fontSize: "20px"
+};
+function FruitList({fruits, onDeleteFruit, onUpdateFruit}) {
+    function Fruit({fruit}) {
+        return (
+            <div style={style}>
+                <br />
+                <h2>{fruit.name}</h2>
+                <p>price: {fruit.price}</p>
+                <p>stock: {fruit.stock}</p>
+                <p>health_benefit: {fruit.health_benefit}</p> 
+                <button id='update' onclick={onUpdateFruit}>update</button> 
+                <button id='delete' onclick={onDeleteFruit}>delete</button>        
+            </div>
+        );
     }
 
     return (
-        <div>
-            {allFruit()}
-        </div>
+        fruits.map((f) => (<Fruit fruit={f} key={f.id}/>))
     );
 }
 
