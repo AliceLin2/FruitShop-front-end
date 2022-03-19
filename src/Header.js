@@ -3,7 +3,7 @@ import React from "react";
 function Header({owners}) {
   const options = owners.map((owner) => (<Option option={owner} key={owner.id}/>))
   function Option({option}){
-      return <option value={option.name}>{option.name}</option>
+      return <option value={option.id}>{option.name}</option>
   }
   return (
     <div>
@@ -11,8 +11,9 @@ function Header({owners}) {
         <label>
             Choose which shop of owners below you want to go to?
             <select
+                id="owners"
                 placeholder="owners"
-                onChange={e=>console.log(e)}
+                onChange={e=>console.log(e.target.value)}
             >
             <option value="All">All</option>
             {options}

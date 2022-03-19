@@ -7,6 +7,7 @@ import NewFruitForm from "./NewFruitForm";
 function App() {
   const [fruits, setFruits] = useState([]);
   const [owners, setOwners] = useState([]);
+  const [selectedOwner, setSelectedOwner] = useState("");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
