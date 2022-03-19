@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import FruitList from "./FruitList";
 import Header from "./Header";
-import NewFruitForm from "./NewFruitForm";
+import FruitForm from "./FruitForm";
 
 function App() {
   const [fruits, setFruits] = useState([]);
   const [owners, setOwners] = useState([]);
   const [selectedOwner, setSelectedOwner] = useState("All");
   const [search, setSearch] = useState("");
+  const empty = {
+    name: "",
+    price: 0,
+    stock: 0,
+    health_benefit: "",
+    owner_id: selectedOwner
+  }
+  const [formData, setFormData] = useState(empty)
 
   useEffect(() => {
     fetch("http://localhost:9292/owners")
@@ -29,12 +37,13 @@ function App() {
   }, [selectedOwner]);
 
   function handleAddFruit(newFruit) {
-    setFruits([...fruits, newFruit]);
+    setFruits([...fruits, newFruit])
+    setFormData(empty)
   }
 
   function handleDeleteFruit(id) {
-    const updatedFruits = fruits.filter((fruit) => fruit.id !== id);
-    setFruits(updatedFruits);
+    const updatedFruits = fruits.filter((fruit) => fruit.id !== id)
+    setFruits(updatedFruits)
   }
 
   function handleUpdateFruit(updatedFruit) {
@@ -45,22 +54,38 @@ function App() {
         return fruit;
       }
     });
-    setFruits(updatedFruits);
+    setFruits(updatedFruits)
+    setFormData(empty)
   }
 
   const showFruits = fruits.filter((fruit) =>
     fruit.name.toLowerCase().includes(search.toLowerCase())
   );
-
+  
   return (
     <main>
-      <Header owners={owners} onChangeSelect={setSelectedOwner} selectedOwner={selectedOwner}/>
+      <Header 
+        owners={owners} 
+        onChangeSelectedOwner={setSelectedOwner} 
+        selectedOwner={selectedOwner} 
+        onChangeFormData={setFormData}
+        empty={empty}
+      />
       <Search search={search} onSearch={setSearch}/>
-      <NewFruitForm onAddFruit={handleAddFruit}/>
+      {selectedOwner==="All"
+        ? ""
+        :
+        <FruitForm 
+          onAddFruit={handleAddFruit} 
+          onUpdateFruit={handleUpdateFruit} 
+          formData={formData}
+          onChangeFormData={setFormData}
+        />}
       <FruitList
         fruits={showFruits}
         onDeleteFruit={handleDeleteFruit}
-        onUpdateFruit={handleUpdateFruit}
+        onChangeFormData={setFormData}
+        onChangeSelectedOwner={setSelectedOwner}
       />
     </main>
   );
