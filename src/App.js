@@ -7,7 +7,7 @@ import NewFruitForm from "./NewFruitForm";
 function App() {
   const [fruits, setFruits] = useState([]);
   const [owners, setOwners] = useState([]);
-  const [selectedOwner, setSelectedOwner] = useState("");
+  const [selectedOwner, setSelectedOwner] = useState("All");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -17,10 +17,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:9292/fruits")
+    if(selectedOwner == "All"){
+      fetch("http://localhost:9292/fruits")
       .then((r) => r.json())
-      .then((fruits) => setFruits(fruits));
-  }, []);
+      .then((fruits) => setFruits(fruits))
+    }else{
+      fetch(`http://localhost:9292/${selectedOwner}/fruits`)
+      .then((r) => r.json())
+      .then((fruits) => setFruits(fruits))
+    }
+  }, [selectedOwner]);
 
   function handleAddFruit(newFruit) {
     setFruits([...fruits, newFruit]);
@@ -48,7 +54,7 @@ function App() {
 
   return (
     <main>
-      <Header owners={owners}/>
+      <Header owners={owners} onChangeSelect={setSelectedOwner} selectedOwner={selectedOwner}/>
       <Search search={search} onSearch={setSearch}/>
       <NewFruitForm onAddFruit={handleAddFruit}/>
       <FruitList
