@@ -10,36 +10,42 @@ const style = {
 };
 function FruitList({fruits, onDeleteFruit, onUpdateFruit}) {
     const [editMode, setEditMode] = useState(false)
-    function handleUpdate(){
+    const [price, setPrice] = useState()
+    const [stock, setStock] = useState()
+    const [healthBenefit, setHealthBenefit] = useState()
+
+    function handleUpdate(fruit){
         if(editMode===false){
           setEditMode(!editMode)
         }else{
-            fetch(`http://localhost:3000/food/${match.id}`,{
+            fetch(`http://localhost:9292/fruits/${fruit.id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type":"application/json"
                 },
                 body:JSON.stringify({
-                    ...match,
-                    rating: newRating
+                    ...fruit,
+                    price,
+                    stock,
+                    health_benefit: healthBenefit
                 })
             })
             .then(r=>r.json())
             .then(data=>{
                 setEditMode(!editMode)
-                onFetchFood()
+                onUpdateFruit(data)
+                console.log(data)
             })
         }
     }
   
-    function handleDelete(){
-      fetch(`http://localhost:3000/food/${match.id}`,{
+    function handleDelete(id){
+      fetch(`http://localhost:9292/fruits/${id}`,{
           method:"DELETE"
       })
       .then(r=>r.json())
       .then(data=>{
-          history.push("/myfoodportfolio")
-          onFetchFood()
+        onDeleteFruit(id)
       })
     } 
     function Fruit({fruit}) {
@@ -48,21 +54,21 @@ function FruitList({fruits, onDeleteFruit, onUpdateFruit}) {
                 <br />
                 {editMode?
                     <div>
+                        <h2>{fruit.name}</h2>        
+                        <input type="text" placeholder="price" name="price" value={price} onChange={setPrice}/>
+                        <input type="text" placeholder="stock" name="stock" value={stock} onChange={setStock}/>
+                        <textarea type="text" placeholder="health benefit" name="health_benefit" value={healthBenefit} onChange={setHealthBenefit}/>
+                    </div>
+                                :
+                    <div>
                         <h2>{fruit.name}</h2>
                         <p>Price: {fruit.price}</p>
                         <p>Stock: {fruit.stock}</p>
                         <p>Health_benefit: {fruit.health_benefit}</p>
                     </div>
-                    :
-                    <div>
-                        <h2>{fruit.name}</h2>
-                        <input></input>
-                        <input></input>
-                        <input></input>
-                    </div>
                 }
 
-                <button id='update' onClick={e=>handleUpdate(fruit.id)}>{editMode?"save":"update"}</button> 
+                <button id='update' onClick={e=>handleUpdate(fruit)}>{editMode?"save":"update"}</button> 
                 <button id='delete' onClick={e=>handleDelete(fruit.id)}>delete</button>        
             </div>
         );
