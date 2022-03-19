@@ -17,8 +17,8 @@ function FruitList({fruits, onDeleteFruit, onUpdateFruit}) {
                 <p>Price: {fruit.price}</p>
                 <p>Stock: {fruit.stock}</p>
                 <p>Health_benefit: {fruit.health_benefit}</p> 
-                <button id='update' onclick={onUpdateFruit}>update</button> 
-                <button id='delete' onclick={onDeleteFruit}>delete</button>        
+                <button id='update' onClick={onUpdateFruit}>update</button> 
+                <button id='delete' onClick={onDeleteFruit}>delete</button>        
             </div>
         );
     }
