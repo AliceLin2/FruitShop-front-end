@@ -13,7 +13,7 @@ function Header({owners, onChangeSelectedOwner, selectedOwner, onChangeFormData,
   }
 
   return (
-    <div>
+    <div style={{backgroundColor:"lightblue"}}>
         <h1>Welcome to fruit shop!</h1>
         <label>
             Choose which shop of owners below you want to go to?

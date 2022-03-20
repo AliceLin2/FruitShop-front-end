@@ -3,6 +3,7 @@ import Search from "./Search";
 import FruitList from "./FruitList";
 import Header from "./Header";
 import FruitForm from "./FruitForm";
+import background from "./image.png"
 
 function App() {
   const [fruits, setFruits] = useState([]);
@@ -63,7 +64,7 @@ function App() {
   );
   
   return (
-    <main>
+    <div style={{ backgroundImage: `url(${background})` }}>
       <Header 
         owners={owners} 
         onChangeSelectedOwner={setSelectedOwner} 
@@ -87,7 +88,7 @@ function App() {
         onChangeFormData={setFormData}
         onChangeSelectedOwner={setSelectedOwner}
       />
-    </main>
+    </div>
   );
 }
 

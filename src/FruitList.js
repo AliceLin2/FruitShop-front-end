@@ -6,7 +6,7 @@ const style = {
     padding: "20px",
     margin: "0 10px 10px",
     color: "black",
-    fontSize: "20px"
+    fontSize: "20px",
 };
 function FruitList({fruits, onDeleteFruit, onChangeFormData, onChangeSelectedOwner}) {
     function handleUpdate(fruit){
