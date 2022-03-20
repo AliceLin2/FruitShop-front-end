@@ -14,9 +14,9 @@ function Header({owners, onChangeSelectedOwner, selectedOwner, onChangeFormData,
 
   return (
     <div style={{backgroundColor:"lightblue"}}>
-        <h1>Welcome to fruit shop!</h1>
+        <h1>Welcome to Fruit Shop!</h1>
         <label>
-            Choose which shop of owners below you want to go to? 
+            Choose the shop of which owner you want to go to? 
             <select
                 placeholder="owners"
                 onChange={e=>handleChange(e)}
