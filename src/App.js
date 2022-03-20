@@ -64,7 +64,7 @@ function App() {
   );
   
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div style={{backgroundImage: `url(${background})`}}>
       <Header 
         owners={owners} 
         onChangeSelectedOwner={setSelectedOwner} 
