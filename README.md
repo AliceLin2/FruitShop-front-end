@@ -1,29 +1,27 @@
 Overview
 
-    Fruit Shop APP is an APP where shop owners could find different kinds of fruit they own and sell along with information about any particular fruit (such as price, stock and health benefit). Owners could update any information regarding each fruit. Also they could delete fruits from their shops. The fruits and owners data are stored in the back end server writing using Ruby. 
+    Fruit Shop APP is an APP where shop owners could find many different kinds of fruits they own and sell along with some information about any particular fruit (such as price, stock and health benefit). Owners could update the information regarding each fruit. They also could delete any fruit from their shops. The fruits and owners data are stored in the back end server writing using Ruby. 
 
 Usage
        
-    1. fork and clone "https://github.com/AliceLin2/phase-3-sinatra-react-project", cd to this folder
+    1. fork and clone "https://github.com/AliceLin2/phase-3-sinatra-react-project", cd to that folder
 
-    2. run back end server
+    2. run back end server through entering command in the terminal
 
         bundle exec rake server
 
-    3. fork and clone "https://github.com/AliceLin2/sinatra-project-front-end", cd to this folder
+    3. fork and clone "https://github.com/AliceLin2/sinatra-project-front-end", cd to that folder
 
-    4.  open another terminal and enter npm install then enter npm start, when asked whether want to run at another port, enter "yes"
+    4.  open another terminal and enter npm install then enter npm start
 
     5. nagivate the website
 
-        1' see Home page first, can navigate to the other two pages by click each link on navigation bar. 
-        2' FoodFromAPI tab, receive the lots of recipes from "spoonacular API" and can change the received results by changing the filter. 
-        3' Users can also search the recipes by keywords.
-        4' click the food image to collect the recipe together with users' own rating about the recipe.
-        5' MyFoodPortfolio tab, the recipes in collection are from users' previous colletion which are saved on JSON.server
-        6' choose each of the recipes in the list by click the link, detail about the recipe will display in section below
-        7' edit the rating using edit button
-        8' delete the recipe from collection by click the delete button
+        1' See Home page first which return all the fruits owned by all the owners. 
+        2' Users can search the fruits by inputing fruit name.
+        3' By changing the filter, the shop of specific owner chose will be displayed together with the fruits that owner owned. 
+        4' Users can edit the fruit information by clicking update button
+        5' Also delete any fruit using the delete button
+      
 
     For more information on navigating the APP, please check out this Youtube link. https://www.youtube.com/watch?v=YEXu0R7GrUs
 
