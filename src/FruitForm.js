@@ -41,6 +41,7 @@ function FruitForm({formData, onChangeFormData, onAddFruit, onUpdateFruit}) {
 
   return (
     <form className="NewItem" onSubmit={handleSubmit}>
+      <h3>Add new Fruit</h3>
       <label>
         Name:
         <input type="text" name="name" value={formData.name} onChange={handleChange}/>

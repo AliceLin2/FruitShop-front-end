@@ -1,45 +1,33 @@
 import React from "react";
+import Fruit from "./Fruit"
 
-const style = {
-    display: "inline-block",
-    width: "500px",
-    padding: "20px",
-    margin: "0 10px 10px",
-    color: "black",
-    fontSize: "20px",
-};
-function FruitList({fruits, onDeleteFruit, onChangeFormData, onChangeSelectedOwner}) {
-    function handleUpdate(fruit){
-        onChangeFormData(fruit)
-        onChangeSelectedOwner(fruit.owner_id)
+function FruitList({fruits, onChangeFruit, search}) {
+    function handleAddFruit(newFruit) {
+        onChangeFruit([...fruits, newFruit])
     }
-    function handleDelete(id){
-      fetch(`http://localhost:9292/fruits/${id}`,{
-          method:"DELETE"
-      })
-      .then(r=>r.json())
-      .then(data=>{
-        onDeleteFruit(id)
-      })
-    } 
-    function Fruit({fruit}) {
-        return (
-            <div style={style}>
-                <br />
-                <div>
-                    <h2>{fruit.name}</h2>
-                    <p>Price: {fruit.price}</p>
-                    <p>Stock: {fruit.stock}</p>
-                    <p>Health_benefit: {fruit.health_benefit}</p>
-                </div>
-                <button id='update' onClick={e=>handleUpdate(fruit)}>update</button> 
-                <button id='delete' onClick={e=>handleDelete(fruit.id)}>delete</button>        
-            </div>
-        );
+
+    function handleDeleteFruit(id) {
+        const updatedFruits = fruits.filter((fruit) => fruit.id !== id)
+        onChangeFruit(updatedFruits)
     }
+
+    function handleUpdateFruit(updatedFruit) {
+        const updatedFruits = fruits.map((fruit) => {
+            if (fruit.id === updatedFruit.id) {
+            return updatedFruit;
+            } else {
+            return fruit;
+            }
+        });
+        onChangeFruit(updatedFruits)
+    }
+
+    const showFruits = fruits.filter((fruit) =>
+        fruit.name.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
-        fruits.map((f) => (<Fruit fruit={f} key={f.id}/>))
+        showFruits.map((f) => (<Fruit fruit={f} key={f.id} onDeleteFruit={handleDeleteFruit}/>))
     );
 }
 

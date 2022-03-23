@@ -1,5 +1,4 @@
 import React from "react";
-
 const style = {
     display: "inline-block",
     width: "500px",
@@ -8,7 +7,8 @@ const style = {
     color: "black",
     fontSize: "20px",
 };
-function FruitList({fruits, onDeleteFruit, onChangeFormData, onChangeSelectedOwner}) {
+
+function Fruit({fruit, onDeleteFruit, onChangeFormData, onChangeSelectedOwner}) {
     function handleUpdate(fruit){
         onChangeFormData(fruit)
         onChangeSelectedOwner(fruit.owner_id)
@@ -22,25 +22,19 @@ function FruitList({fruits, onDeleteFruit, onChangeFormData, onChangeSelectedOwn
         onDeleteFruit(id)
       })
     } 
-    function Fruit({fruit}) {
-        return (
-            <div style={style}>
-                <br />
-                <div>
-                    <h2>{fruit.name}</h2>
-                    <p>Price: {fruit.price}</p>
-                    <p>Stock: {fruit.stock}</p>
-                    <p>Health_benefit: {fruit.health_benefit}</p>
-                </div>
-                <button id='update' onClick={e=>handleUpdate(fruit)}>update</button> 
-                <button id='delete' onClick={e=>handleDelete(fruit.id)}>delete</button>        
-            </div>
-        );
-    }
-
     return (
-        fruits.map((f) => (<Fruit fruit={f} key={f.id}/>))
+        <div style={style}>
+            <br />
+            <div>
+                <h2>{fruit.name}</h2>
+                <p>Price: {fruit.price}</p>
+                <p>Stock: {fruit.stock}</p>
+                <p>Health_benefit: {fruit.health_benefit}</p>
+            </div>
+            <button id='update' onClick={e=>handleUpdate(fruit)}>update</button> 
+            <button id='delete' onClick={e=>handleDelete(fruit.id)}>delete</button>        
+        </div>
     );
 }
 
-export default FruitList;
+export default Fruit;
