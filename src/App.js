@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import FruitList from "./FruitList";
 import Header from "./Header";
+import Header2 from "./Header copy";
 import FruitForm from "./FruitForm";
 import background from "./images/Lemon.png"
 
@@ -72,6 +73,7 @@ function App() {
         onChangeFormData={setFormData}
         empty={empty}
       />
+      <Header2 owners={owners} fruits={showFruits} />
       <Search search={search} onSearch={setSearch}/>
       {selectedOwner==="All"
         ? ""
