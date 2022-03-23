@@ -33,6 +33,7 @@ function App() {
   return (
     <div style={{backgroundImage: `url(${background})`}}>
       <h1>Welcome to Fruit Shop!</h1>
+      <Search search={search} onSearch={setSearch}/>
       <div>
           <ul>{ownerList}</ul>
           
@@ -45,7 +46,6 @@ function App() {
               </Route>
           </Switch>
       </div>
-      <Search search={search} onSearch={setSearch}/>
     </div>
   );
 }

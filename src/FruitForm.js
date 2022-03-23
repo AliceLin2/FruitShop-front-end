@@ -1,47 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 
-function FruitForm({formData, onChangeFormData, onAddFruit, onUpdateFruit}) {
+function FruitForm({onAddFruit, ownerId}) {
+  const [formData, setFormData]=useState({
+    name:"",
+    price:0,
+    stock:0,
+    health_benefit:""
+  })
+
   function handleChange(e){
       const key = e.target.name
       const value = e.target.value
-      onChangeFormData({
+      setFormData({
         ...formData,
         [key]:value
       })
   }
 
   function handleSubmit(e){
-    e.preventDefault()
-    if(formData.id===undefined){
+      e.preventDefault()
       fetch('http://localhost:9292/fruits',{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify(formData)
+        body:JSON.stringify({...formData, owner_id:ownerId})
       })
       .then(r=>r.json())
       .then(data=>{
           onAddFruit(data)
+          console.log(data)
       })
-    }else{
-      fetch(`http://localhost:9292/fruits/${formData.id}`,{
-        method:"PATCH",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(formData)
-      })
-      .then(r=>r.json())
-      .then(data=>{
-          onUpdateFruit(formData)
-      })
-    }
   }
 
   return (
     <form className="NewItem" onSubmit={handleSubmit}>
-      <h3>Add new Fruit</h3>
+      <h3>Add New Fruit</h3>
       <label>
         Name:
         <input type="text" name="name" value={formData.name} onChange={handleChange}/>

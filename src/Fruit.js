@@ -8,10 +8,9 @@ const style = {
     fontSize: "20px",
 };
 
-function Fruit({fruit, onDeleteFruit, onChangeFormData, onChangeSelectedOwner}) {
+function Fruit({fruit, onDeleteFruit, onChangeFormData}) {
     function handleUpdate(fruit){
         onChangeFormData(fruit)
-        onChangeSelectedOwner(fruit.owner_id)
     }
     function handleDelete(id){
       fetch(`http://localhost:9292/fruits/${id}`,{
