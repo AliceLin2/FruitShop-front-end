@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import background from "./images/Lemon.png"
 import {Link, Route, Switch} from "react-router-dom"
-import Shop from "./Shop";
+import ShopList from "./ShopList";
+
 const styles = {
   display: "inline-block",
-  width: "100px",
-  padding: "10px",
-  margin: "0 10px 10px",
-  background: "#F39C12",
-  color: "white",
-  fontSize: "30px"
 };
 
 function App() {
   const [owners, setOwners] = useState([]);
+  const [fruits, setFruits] = useState([]);
   const [search, setSearch] = useState("");
   const path = '/owners'
 
@@ -24,10 +20,16 @@ function App() {
       .then((owners) => setOwners(owners));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:9292/fruits")
+    .then((r) => r.json())
+    .then((fruits) => setFruits(fruits))
+  }, []);
+
   const ownerList = owners.map(({id, name}) => (
-    <h3 key={id}>
+    <li key={id}>
         <Link style={styles} to={`/owners/${id}/fruits`}>{name}</Link>
-    </h3>
+    </li>
   ));
 
   return (
@@ -35,14 +37,15 @@ function App() {
       <h1>Welcome to Fruit Shop!</h1>
       <Search search={search} onSearch={setSearch}/>
       <div>
+          <Link style={styles} to={`/fruits`}>All Fruits</Link>
           <ul>{ownerList}</ul>
           
           <Switch>
-              <Route exact path={path}>
-                  <h3>All</h3>
+              <Route exact path='/fruits'>
+                  <ShopList search={search} fruits={fruits} onChangeFruit={setFruits}/>
               </Route>
               <Route path={`${path}/:ownerId/fruits`}>
-                  <Shop search={search}/>
+                  <ShopList search={search} fruits={fruits} onChangeFruit={setFruits}/>
               </Route>
           </Switch>
       </div>

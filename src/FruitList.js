@@ -1,7 +1,7 @@
 import React from "react";
 import Fruit from "./Fruit"
 
-function FruitList({fruits, onChangeFruit, search}) {
+function FruitList({fruits, onChangeFruit}) {
     function handleDeleteFruit(id) {
         const updatedFruits = fruits.filter((fruit) => fruit.id !== id)
         onChangeFruit(updatedFruits)
@@ -18,12 +18,8 @@ function FruitList({fruits, onChangeFruit, search}) {
         onChangeFruit(updatedFruits)
     }
 
-    const showFruits = fruits.filter((fruit) =>
-        fruit.name.toLowerCase().includes(search.toLowerCase())
-    );
-
     return (
-        showFruits.map((f) => (<Fruit fruit={f} key={f.id} onUpdateFruit={handleUpdateFruit} onDeleteFruit={handleDeleteFruit}/>))
+        fruits.map((f) => (<Fruit fruit={f} key={f.id} onUpdateFruit={handleUpdateFruit} onDeleteFruit={handleDeleteFruit}/>))
     );
 }
 
