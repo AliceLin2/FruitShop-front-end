@@ -3,7 +3,7 @@ import Search from "./Search";
 import FruitList from "./FruitList";
 import Header from "./Header";
 import FruitForm from "./FruitForm";
-import background from "./image.png"
+import background from "./images/Lemon.png"
 
 function App() {
   const [fruits, setFruits] = useState([]);
@@ -31,7 +31,7 @@ function App() {
       .then((r) => r.json())
       .then((fruits) => setFruits(fruits))
     }else{
-      fetch(`http://localhost:9292/${selectedOwner}/fruits`)
+      fetch(`http://localhost:9292/owners/${selectedOwner}/fruits`)
       .then((r) => r.json())
       .then((fruits) => setFruits(fruits))
     }

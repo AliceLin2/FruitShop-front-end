@@ -25,6 +25,7 @@ Usage
 
     For more information on navigating the APP, please check out this Youtube link. https://www.youtube.com/watch?v=YEXu0R7GrUs
 
+    source of information: https://www.berries.com/blog/types-of-fruit
 
 # Getting Started with Create React App
 
