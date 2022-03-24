@@ -1,6 +1,6 @@
 Overview
 
-    Fruit Shop APP is an APP where shop owners could find many different kinds of fruits they own and sell along with some information about any particular fruit (such as price, stock and health benefit). Owners could update the information regarding each fruit. They also could delete any fruit from their shops. The fruits and owners data are stored in the back end server writing using Ruby. 
+    Fruit Shop APP is an APP where shop owners could find many different kinds of fruits they own and sell along with some information about any particular fruit (such as price, stock and health benefit). Owners could update the information regarding each fruit. They also could delete any fruit from their shops. The fruits and owners data are stored in the back end server wrote by Ruby. 
 
 Usage
        
@@ -18,8 +18,8 @@ Usage
 
         1' See Home page first which return all the fruits owned by all the owners. 
         2' Users can search the fruits by inputing fruit name.
-        3' By changing the filter, the shop of specific owner chose will be displayed together with the fruits that owner owned. 
-        4' Users can edit the fruit information by clicking update button
+        3' By clicking different owner names on the top, only the fruits that specific owner owned will be displayed below.
+        4' Users can edit any fruit information by clicking update button
         5' Also delete any fruit using the delete button
       
 

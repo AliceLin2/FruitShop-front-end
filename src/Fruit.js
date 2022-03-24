@@ -36,7 +36,7 @@ function Fruit({fruit, onDeleteFruit, onUpdateFruit}) {
                     <h2>{fruit.name}</h2>
                     <p>Price: {fruit.price}</p>
                     <p>Stock: {fruit.stock}</p>
-                    <p>Health_benefit: {fruit.health_benefit}</p>
+                    <p>Health Benefit: {fruit.health_benefit}</p>
                 </div>
                 ) 
             }

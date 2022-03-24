@@ -8,7 +8,7 @@ function NewFruit({onAddFruit, ownerId}) {
       health_benefit:""
     }
   const [formData, setFormData]=useState(defaultForm)
-
+  console.log(formData.health_benefit)
   function handleChange(e){
       const key = e.target.name
       const value = (key === "stock" || key === "price") ? parseInt(e.target.value): e.target.value
