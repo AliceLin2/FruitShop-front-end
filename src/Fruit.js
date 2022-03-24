@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
+import UpdateFruit from "./UpdateFruit"
+
 const style = {
     display: "inline-block",
     width: "500px",
@@ -8,9 +10,12 @@ const style = {
     fontSize: "20px",
 };
 
-function Fruit({fruit, onDeleteFruit, onChangeFormData}) {
+function Fruit({fruit, onDeleteFruit, onUpdateFruit}) {
+    const [isUpdating, setIsUpdating] = useState(false);
+
     function handleUpdate(fruit){
-        onChangeFormData(fruit)
+        setIsUpdating(false)
+        onUpdateFruit(fruit)
     }
     function handleDelete(id){
       fetch(`http://localhost:9292/fruits/${id}`,{
@@ -24,13 +29,19 @@ function Fruit({fruit, onDeleteFruit, onChangeFormData}) {
     return (
         <div style={style}>
             <br />
-            <div>
-                <h2>{fruit.name}</h2>
-                <p>Price: {fruit.price}</p>
-                <p>Stock: {fruit.stock}</p>
-                <p>Health_benefit: {fruit.health_benefit}</p>
-            </div>
-            <button id='update' onClick={e=>handleUpdate(fruit)}>update</button> 
+            {isUpdating ? (
+                <UpdateFruit />
+            ) : (
+                <div>
+                    <h2>{fruit.name}</h2>
+                    <p>Price: {fruit.price}</p>
+                    <p>Stock: {fruit.stock}</p>
+                    <p>Health_benefit: {fruit.health_benefit}</p>
+                </div>
+                ) 
+            }
+            
+            <button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button> 
             <button id='delete' onClick={e=>handleDelete(fruit.id)}>delete</button>        
         </div>
     );

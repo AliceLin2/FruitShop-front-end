@@ -6,6 +6,12 @@ import ShopList from "./ShopList";
 
 const styles = {
   display: "inline-block",
+  width: "100px",
+  padding: "10px",
+  margin: "0 10px 10px",
+  background: "#F39C12",
+  color: "black",
+  fontSize: "30px"
 };
 
 function App() {
@@ -27,9 +33,9 @@ function App() {
   }, []);
 
   const ownerList = owners.map(({id, name}) => (
-    <li key={id}>
+    <React.Fragment key={id}>
         <Link style={styles} to={`/owners/${id}/fruits`}>{name}</Link>
-    </li>
+    </React.Fragment>
   ));
 
   return (
@@ -37,15 +43,17 @@ function App() {
       <h1>Welcome to Fruit Shop!</h1>
       <Search search={search} onSearch={setSearch}/>
       <div>
-          <Link style={styles} to={`/fruits`}>All Fruits</Link>
-          <ul>{ownerList}</ul>
-          
+          <div>
+            <Link style={styles} to={`/fruits`}>All</Link>
+            <React.Fragment>{ownerList}</React.Fragment>
+          </div>
+
           <Switch>
               <Route exact path='/fruits'>
-                  <ShopList search={search} fruits={fruits} onChangeFruit={setFruits}/>
+                  <ShopList search={search} fruits={fruits} onChangeFruits={setFruits}/>
               </Route>
               <Route path={`${path}/:ownerId/fruits`}>
-                  <ShopList search={search} fruits={fruits} onChangeFruit={setFruits}/>
+                  <ShopList search={search} fruits={fruits} onChangeFruits={setFruits}/>
               </Route>
           </Switch>
       </div>

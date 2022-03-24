@@ -1,17 +1,32 @@
 import React from "react";
 import {useParams, useHistory} from "react-router-dom"
-import FruitForm from "./FruitForm";
+import NewFruit from "./NewFruit";
 import FruitList from "./FruitList";
-import background from "./images/Peach.png"
 
-function ShopList({search, fruits, onChangeFruit}) {
+function ShopList({search, fruits, onChangeFruits}) {
   const {ownerId} = useParams()
   const history = useHistory() 
 
   function handleAddFruit(newFruit) {
-    onChangeFruit([...fruits, newFruit])
+    onChangeFruits([...fruits, newFruit])
   }
-  console.log(ownerId)
+
+  function handleDeleteFruit(id) {
+    const updatedFruits = fruits.filter((fruit) => fruit.id !== id)
+    onChangeFruits(updatedFruits)
+  }
+
+  function handleUpdateFruit(updatedFruit) {
+      const updatedFruits = fruits.map((fruit) => {
+          if (fruit.id === updatedFruit.id) {
+          return updatedFruit;
+          } else {
+          return fruit;
+          }
+      });
+      onChangeFruits(updatedFruits)
+  }
+
   const displayFruits = fruits
   .filter((fruit) => {
     if(ownerId===undefined){
@@ -23,11 +38,12 @@ function ShopList({search, fruits, onChangeFruit}) {
   .filter((fruit) => fruit.name.toLowerCase().includes(search.toLowerCase()))
 
   return (
-   <div style={{backgroundImage: `url(${background})`}}>
-      <FruitForm onAddFruit={handleAddFruit} ownerId={ownerId}/>
+   <div>
+      {ownerId===undefined?"":<NewFruit onAddFruit={handleAddFruit} ownerId={ownerId}/>}
       <FruitList
         fruits={displayFruits}
-        onChangeFruit={onChangeFruit}
+        onUpdateFruit={handleUpdateFruit}
+        onDeleteFruit={handleDeleteFruit}
       />
     </div>
   );
