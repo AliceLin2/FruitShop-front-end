@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 
 function NewFruit({onAddFruit, ownerId}) {
-  const [formData, setFormData]=useState({
-    name:"",
-    price:0,
-    stock:0,
-    health_benefit:""
-  })
+  const defaultForm = {    
+      name:"",
+      price:0,
+      stock:0,
+      health_benefit:""
+    }
+  const [formData, setFormData]=useState(defaultForm)
 
   function handleChange(e){
       const key = e.target.name
-      const value = e.target.value
+      const value = (key === "stock" || key === "price") ? parseInt(e.target.value): e.target.value
       setFormData({
         ...formData,
         [key]:value
@@ -29,6 +30,7 @@ function NewFruit({onAddFruit, ownerId}) {
       .then(r=>r.json())
       .then(data=>{
           onAddFruit(data)
+          setFormData(defaultForm)
       })
   }
 

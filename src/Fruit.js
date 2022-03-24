@@ -30,7 +30,7 @@ function Fruit({fruit, onDeleteFruit, onUpdateFruit}) {
         <div style={style}>
             <br />
             {isUpdating ? (
-                <UpdateFruit />
+                <UpdateFruit fruit={fruit} onUpdateFruit={handleUpdate}/>
             ) : (
                 <div>
                     <h2>{fruit.name}</h2>

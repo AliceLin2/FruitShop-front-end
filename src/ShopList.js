@@ -1,11 +1,10 @@
 import React from "react";
-import {useParams, useHistory} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import NewFruit from "./NewFruit";
 import FruitList from "./FruitList";
 
 function ShopList({search, fruits, onChangeFruits}) {
   const {ownerId} = useParams()
-  const history = useHistory() 
 
   function handleAddFruit(newFruit) {
     onChangeFruits([...fruits, newFruit])
